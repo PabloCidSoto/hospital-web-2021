@@ -1,15 +1,16 @@
-
-#encabezado,#banner {
-    width: 100%;
-    margin: 0;
+:root{
+    --color1: #84e52c;
+    --color2: #2ce530;
+    --color3: #2ce58d;
+    --color4: #2ce1e5;
+    --color5: #2c84e5;
+    --color6: #302ce5;
 }
-#logo{
-    width: 60%;
+
+#logo{    
     text-align: center;
 }
-#redes,#tel{
-    width: 20%;
-}
+
 #redes{
     text-align: left;
 }
@@ -17,61 +18,10 @@
     text-align: right;
 }
 #encabezado{
-    display: flex;    
+    background-color: ;   
 }
-
-/*Nav**/
-.nav-bg {
-	background-color: cornflowerblue;
-}
-.navegacion{
-    display: flex; 
-    flex-direction: column;       
-}
-
-.navegacion__enlace{
-    display: block;
-	text-align: center;
-	padding: 1rem;
-	color: white;
-	text-decoration: none;
-	font-size: 2rem;
-	font-weight: 700;
-}
-.navegacion a:hover{
-    background-color: #36d962;
-}
-@media (min-width: 768px ) {
-    .navegacion{
-        flex-direction: row;
-        justify-content: space-between;
-    }
-}
-
-
-
-
-.hipervinculo {
-    text-transform: uppercase;
-    color: black;
-    text-decoration-line: underline;
-    text-decoration-style: double;
-}
-
-.hipervinculo2{
-    font-style: italic;
-}
-
-#hipervinculo3{
-    color: red;
-}
-
-#mision {
-    text-decoration: underline;
-}
-
 #footer{
-    background-color:  #5b5f66;
+    color: white;
+    background-color:  var(--color6);
+    padding-left: 2rem;         
 }
-
-
