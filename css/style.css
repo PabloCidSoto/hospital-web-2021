@@ -18,12 +18,13 @@
     text-align: right;
 }
 #encabezado{
-    /* background-color: ;    */
+    background: linear-gradient(to right, white -10%, var(--color2));
 }
 #footer{
     color: white;
     background-color:  var(--color6);
-    padding: 1rem;        
+    padding: 1rem;
+           
 }
 #footer a{
     text-decoration: none;

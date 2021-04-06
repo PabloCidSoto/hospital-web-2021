@@ -9,7 +9,7 @@
     </head>
     <body>        
         <div class="container">
-            <div class="row"><!-- Encabezado-->
+            <div id="encabezado" class="row d-flex align-items-center justify-content-center"><!-- Encabezado-->
                 <div class="col">
                     <a href="https://www.facebook.com" target="blank"><img src="images/facebook.png" alt="icon Facebook" width="32" height="32" /></a>
                     <a href="https://www.twitter.com" target="blank"><img src="images/twitter.png" alt="icon Twitter" width="32" height="32" /></a>
@@ -17,12 +17,16 @@
                 <div id="logo" class="col-6">
                     <img class="img-fluid" src="images/logo.png" alt="Logo Sanlao" />
                 </div>
-                <div id="tel" class="col">
-                    <p>Tel:6411232548</p>
+                <div id="tel" class="col d-flex justify-content-end align-items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-phone" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2" />
+                  </svg>
+                  <p class="">Tel:6411232548</p>
                 </div>
             </div>
             <div class="row"><!--banner-->
-                <div class="col-md-auto">
+                <div class="col-md-12">
                     <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-indicators">
                           <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -31,13 +35,13 @@
                         </div>
                         <div class="carousel-inner">
                           <div class="carousel-item active">
-                            <img src="images/crop.jpeg" class="d-block w-100" alt="...">
+                            <img src="images/crop.jpeg" class="d-block w-100" alt="Banner 1">
                           </div>
                           <div class="carousel-item">
-                            <img src="images/crop2.jpeg" class="d-block w-100" alt="...">
+                            <img src="images/crop2.jpeg" class="d-block w-100" alt="Banner 3">
                           </div>
                           <div class="carousel-item">
-                            <img src="images/crop3.jpeg" class="d-block w-100" alt="...">
+                            <img src="images/crop3.jpeg" class="d-block w-100" alt="Banner 2">
                           </div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -100,59 +104,34 @@
             <div class="row"><!--Contenido-->
                 <div class="col-md-8">
                     <section>
-                        <!-- <a class="twitter-timeline" href="https://twitter.com/hospitalclinic?ref_src=twsrc%5Etfw">Tweets by hospitalclinic</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> -->
-                        <h2>Hospital Sanlao</h2>
-                        <p>Somos un grupo hospitalario listo en todo momento para brindarte a ti y a tu familia 
+                        <h2 class="display-3 fw-bold lh-1 mb-3">Hospital Sanlao</h2>
+                        <p class="lead">Somos un grupo hospitalario listo en todo momento para brindarte a ti y a tu familia 
                           gran seguridad, la mejor atención y un excelente servicio a través del equipo y tecnología de punta, 
                           así como de profesionales de la salud altamente calificados.
                         </p>
-                        <h2>otra etiqueta h2</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At 
-                           labore quasi est nam natus explicabo quidem, doloribus mollitia a
-                            liquid illo nisi amet neque fugit odit consectetur assumenda aliquam incidunt sunt.
-                        </p>                 
-                    </section>
-                    <br />
-                    <section>
-                        <div class="accordion" id="accordionExample">
-                            <div class="accordion-item">
-                              <h2 class="accordion-header" id="headingOne">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                  Accordion Item #1
-                                </button>
-                              </h2>
-                              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                  <strong>This is the first item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                                </div>
-                              </div>
-                            </div>
-                            <div class="accordion-item">
-                              <h2 class="accordion-header" id="headingTwo">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                  Accordion Item #2
-                                </button>
-                              </h2>
-                              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                  <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                                </div>
-                              </div>
-                            </div>
-                            <div class="accordion-item">
-                              <h2 class="accordion-header" id="headingThree">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                  Accordion Item #3
-                                </button>
-                              </h2>
-                              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                  <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                                </div>
-                              </div>
-                            </div>
+                        <h2 class="display-5 fw-bold lh-1 mb-3">Servicios Principales</h2>                        
+                        <div class="row flex-lg-row-reverse align-items-center g-5">
+                          <div class="col-10 col-sm-8 col-lg-6">
+                            <img src="images/quirofano.jpg" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
                           </div>
+                          <div class="col-lg-6">
+                            <h1 class="display-6 fw-bold lh-1 mb-3">Quirófano</h1>
+                            <p class="lead">El Quirófano funciona las 24 horas del día, los siete días de la semana y allí se atienden intervenciones programadas o de urgencia, con internación o ambulatorias.</p>
+                          </div>
+                        </div>
+                        <hr>
+                        <div class="row flex-lg-row align-items-center g-5">
+                          <div class="col-10 col-sm-8 col-lg-6">
+                            <img src="images/laboratorio.jpg" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+                          </div>
+                          <div class="col-lg-6">
+                            <h1 class="display-6 fw-bold lh-1 mb-3">Laboratorio</h1>
+                            <p class="lead"> 
+                              Realizamos estudios de laboratorio por medio de la implementación de un sistema de gestión de la calidad ISO:15189, para que el médico pueda realizar un diagnóstico oportuno y certero de sus pacientes, tanto en su consultorio como en instituciones de salud u hospitales donde realice su práctica. </p>
+                          </div>
+                        </div>                                             
                     </section>
+                                       
                 </div>
                 <div class="col-md-4">
                     <aside>                      
