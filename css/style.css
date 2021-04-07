@@ -7,6 +7,10 @@
     --color6: #302ce5;
 }
 
+body {
+    max-width: 99%;
+}
+
 #logo{    
     text-align: center;
 }
@@ -42,4 +46,11 @@
 
 .w80{
     width: 80%;
+}
+
+.cards{
+    width: 100%;    
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
 }
