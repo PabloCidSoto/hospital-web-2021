@@ -1,15 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-    <title>Document</title>
-</head>
-
-<body>
     <h1>Lista de Tipo Producto</h1>
     <?php if(isset($resultado)): ?>
     <div class="alert alert-dark" role="alert">
@@ -17,7 +5,7 @@
     </div>
     <?php endif; ?>
     <a href="tipoProducto.php?action=create" class="btn btn-success">Nuevo Tipo Producto</a>
-    <div class="table-responsive">
+    <div class="table-responsive pt-2">
         <table class="table table-dark table-striped align-middle">
             <tr>
                 <th>ID Tipo Producto</th>
@@ -62,8 +50,4 @@
             <?php endforeach; ?>
         </table>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-    <div>Iconos diseñados por <a href="https://www.flaticon.es/autores/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.es/" title="Flaticon">www.flaticon.es</a></div>
-</body>
-
-</html>
+    
