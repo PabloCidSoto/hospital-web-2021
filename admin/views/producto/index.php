@@ -5,13 +5,17 @@
     </div>
     <?php endif; ?>
     <a href="producto.php?action=create" class="btn btn-success">Nuevo Producto</a>
+    <form action="producto.php" method="get">
+    <input type="text" name="busqueda">
+    <input type="submit" name="buscar">
+    </form>
     <div class="table-responsive pt-2">
         <table class="table table-dark table-striped align-middle">
             <tr>
                 <th>ID Producto</th>
                 <th>Producto</th>
                 <th>Precio</th>
-                <th>Id_tipo_producto</th>
+                <th>tipo producto</th>
                 <th>Acciones</th>
             </tr>
             <?php foreach ($datos as $key => $dato) : ?>
@@ -19,7 +23,7 @@
                     <td><?= $dato['id_producto'] ?></td>
                     <td><?= $dato['producto'] ?></td>
                     <td><?= $dato['precio'] ?></td>
-                    <td><?= $dato['id_tipo_producto'] ?></td>                    
+                    <td><?= $dato['tipo_producto'] ?></td>                    
                     <td>
                         <div class="d-flex justify-content-between">
                             <a href="producto.php?action=delete&id_producto=<?= $dato['id_producto'] ?>" class="btn btn-outline-danger">

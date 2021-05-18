@@ -48,8 +48,16 @@
 
         function read(){
             $dbh = $this->connect();
-            $sentencia = "SELECT * FROM producto";
+            $busqueda = (isset($_GET['busqueda']))? $_GET['busqueda']: '';
+            $ordenamiento = (isset($_GET['ordenamiento']))? $_GET['ordenamiento']: 'p.producto';
+            $limite = (isset($_GET['limite']))? $_GET['limite']: '30';
+            $desde = (isset($_GET['desde']))? $_GET['desde']: '0';
+            $sentencia = "SELECT * FROM producto p join tipo_producto tp using(id_tipo_producto) where p.producto like :busqueda order by :ordenamiento limit :limite offset :desde ";
             $stmt = $dbh->prepare($sentencia);
+            $stmt->bindValue(':busqueda', '%'.$busqueda.'%', PDO::PARAM_STR);
+            $stmt->bindValue(':ordenamiento', $ordenamiento, PDO::PARAM_STR);
+            $stmt->bindValue(':limite', $limite, PDO::PARAM_INT);
+            $stmt->bindValue(':desde', $desde, PDO::PARAM_INT);            
             $stmt->execute();
             $rows = $stmt->fetchAll();
             return $rows;
