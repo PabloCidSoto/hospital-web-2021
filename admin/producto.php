@@ -1,10 +1,13 @@
 <?php
     include('producto.controller.php');
+    include('tipoProducto.controller.php');
+    $tipoProducto = new TipoProducto();
     $producto = new Producto();
     $action = (isset($_GET['action'])) ? $_GET['action'] : 'read';
     include('views/header.php');
+    $tipos = $tipoProducto->read();
     switch($action){
-        case 'create':
+        case 'create':            
             include('views/producto/form.php');
             break;
         case 'save':
@@ -19,7 +22,7 @@
             $datos = $producto->read();
             include('views/producto/index.php');            
             break;
-        case 'show':
+        case 'show':            
             $id_producto = $_GET['id_producto'];
             $datos = $producto->readOne($id_producto);
             include('views/producto/form.php');          

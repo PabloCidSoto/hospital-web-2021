@@ -1,4 +1,4 @@
-<h1><?php echo (isset($datos))? 'Actualizar' : 'Nuevo'; ?> Producto</h1>
+<h1><?php echo (isset($datos))? 'Actualizar' : 'Nuevo'; ?> Tipo de Producto</h1>
 <form action="tipoProducto.php?action=<?php echo (isset($datos))? 'update' : 'save'; ?>" method="post">
     <div class="row pt-3">
         <div class="col-6">
@@ -7,6 +7,6 @@
                 <label for="floatingInput">Tipo Producto</label>
             </div>
         </div>       
-    <input type="hidden" name="producto[id_tipo_producto]=<?php echo (isset($datos[0]['id_tipo_producto']))? $datos[0]['id_tipo_producto'] : ''; ?>" value="<?php echo (isset($datos[0]['id_tipo_productp']))? $datos[0]['id_tipo_producto'] : ''; ?>">
+    <input type="hidden" name="producto[id_tipo_producto]=<?php echo (isset($datos[0]['id_tipo_producto']))? $datos[0]['id_tipo_producto'] : ''; ?>" value="<?php echo (isset($datos[0]['id_tipo_producto']))? $datos[0]['id_tipo_producto'] : ''; ?>">
     <input type="submit" name="enviar" value="Guardar" class="btn btn-primary">
 </form>

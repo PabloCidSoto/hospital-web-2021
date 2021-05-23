@@ -24,13 +24,8 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li><a class="dropdown-item" href="pacientes.php">Pacientes</a></li>
-            <li><a class="dropdown-item" href="permiso.php">Permisos</a></li>
             <li><a class="dropdown-item" href="producto.php">Producto</a></li>
-            <li><a class="dropdown-item" href="rol.php">Roles</a></li>
-            <li><a class="dropdown-item" href="rolPermiso.php">Permisos de Roles</a></li>
             <li><a class="dropdown-item" href="tipoProducto.php">Tipo Producto</a></li>
-            <li><a class="dropdown-item" href="usuario.php">Usuarios</a></li>
-            <li><a class="dropdown-item" href="usuarioRol.php">Roles de Usuario</a></li>
           </ul>
         </li>
       </ul>
@@ -38,4 +33,3 @@
   </div>
 </nav>
 <div class="container">
-

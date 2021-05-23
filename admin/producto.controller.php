@@ -50,7 +50,7 @@
             $dbh = $this->connect();
             $busqueda = (isset($_GET['busqueda']))? $_GET['busqueda']: '';
             $ordenamiento = (isset($_GET['ordenamiento']))? $_GET['ordenamiento']: 'p.producto';
-            $limite = (isset($_GET['limite']))? $_GET['limite']: '30';
+            $limite = (isset($_GET['limite']))? $_GET['limite']: '5';
             $desde = (isset($_GET['desde']))? $_GET['desde']: '0';
             $sentencia = "SELECT * FROM producto p join tipo_producto tp using(id_tipo_producto) where p.producto like :busqueda order by :ordenamiento limit :limite offset :desde ";
             $stmt = $dbh->prepare($sentencia);
@@ -92,6 +92,16 @@
             $stmt->bindParam(':id_producto',$id, PDO::PARAM_INT);
             $resultado = $stmt->execute();           
             return $resultado;
+        }
+
+        function total(){
+            $dbh = $this->connect();
+            $total = 0;
+            $sentencia = "select count(producto) as total from producto";
+            $stmt = $dbh->prepare($sentencia);
+            $stmt->execute();  
+            $rows = $stmt->fetchAll();
+            return $rows['0']['total'];            
         }
     }    
 
