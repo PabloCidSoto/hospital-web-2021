@@ -18,6 +18,7 @@
             $resultado = $rol->delete($id_rol);
             $datos = $rol->read();
             include('views/rol/index.php');
+            break;
         case 'show':
             $id_rol = $_GET['id_rol'];
             $datos = $rol->readOne($id_rol);
@@ -26,7 +27,7 @@
         case 'update':
             $r = $_POST['rol'];
             $resultado = $rol->update($r['id_rol'], $r['rol']);
-            $rol->read();
+            $datos = $rol->read();
             include('views/rol/index.php');
             break;
         default:
