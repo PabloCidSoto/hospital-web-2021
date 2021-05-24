@@ -14,7 +14,7 @@
         }
 
         function getCorreo(){
-            return $this->$correo;
+            return $this->correo;
         }
         function setCorreo($correo){
             $this->correo = $correo;
@@ -28,6 +28,7 @@
         }
 
         function create($correo, $contrasena){
+            $contrasena = md5($contrasena);            
             $dbh = $this->connect();
             $sentencia = "INSERT into usuario (correo, contrasena) values(:correo, :contrasena)";
             $stmt = $dbh->prepare($sentencia);
@@ -51,8 +52,9 @@
             $sentencia = "SELECT * from usuario where id_usuario = :id_usuario";
             $stmt = $dbh->prepare($sentencia);
             $stmt->bindParam('id_usuario', $id, PDO::PARAM_INT);
-            $resultado = $stmt->execute();
-            return $resultado;
+            $stmt->execute();
+            $rows = $stmt->fetchAll();
+            return $rows;
         }
 
         function update($id, $correo, $contrasena){
