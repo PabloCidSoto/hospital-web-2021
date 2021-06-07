@@ -1,3 +1,3 @@
 <?php
-    define('PASSGMAIL','');
+    define('PASSGMAIL','Chaparro98');
 ?>
