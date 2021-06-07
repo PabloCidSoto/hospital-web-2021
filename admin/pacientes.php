@@ -1,6 +1,8 @@
 <?php
     include('pacientes.controller.php');
     $pacientes = new Paciente();
+    $sistema = new Sistema();
+    $sistema->verificarRoles('Doctor');
     $action = (isset($_GET['action'])) ? $_GET['action'] : 'read';
     include('views/header.php');
     switch($action){
@@ -9,7 +11,7 @@
             break;
         case 'save':            
             $paciente = $_POST['paciente'];
-            $resultado = $pacientes->create($paciente['nombre'], $paciente['apaterno'], $paciente['amaterno'], $paciente['nacimiento'], $paciente['domicilio']);
+            $resultado = $pacientes->create($paciente['nombre'], $paciente['apaterno'], $paciente['amaterno'], $paciente['nacimiento'], $paciente['domicilio'], $paciente['correo']);
             $datos = $pacientes->read();
             include('views/pacientes/index.php');            
             break;
@@ -29,7 +31,11 @@
             $resultado = $pacientes->update($paciente['id_paciente'],$paciente['nombre'],$paciente['apaterno'],$paciente['amaterno'],$paciente['nacimiento'],$paciente['domicilio']);
             $datos = $pacientes->read();
             include('views/pacientes/index.php');   
-            break;         
+            break;
+        case 'my':    
+            $datos = $pacientes->read(true);
+            include('views/pacientes/index.php');            
+            break;
         default:
             $datos = $pacientes->read();
             include('views/pacientes/index.php');            

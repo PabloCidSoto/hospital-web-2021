@@ -3,6 +3,8 @@
     include('tipoProducto.controller.php');
     $tipoProducto = new TipoProducto();
     $producto = new Producto();
+    $sistema = new Sistema();
+    $sistema->verificarRoles('Doctor');
     $action = (isset($_GET['action'])) ? $_GET['action'] : 'read';
     include('views/header.php');
     $tipos = $tipoProducto->read();

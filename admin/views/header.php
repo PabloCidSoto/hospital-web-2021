@@ -12,26 +12,22 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Administración</a>
+    <a class="navbar-brand" href="index.php">Inicio</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">        
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Catálogo
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="pacientes.php">Pacientes</a></li>
-            <li><a class="dropdown-item" href="permiso.php">Permisos</a></li>
-            <li><a class="dropdown-item" href="producto.php">Producto</a></li>
-            <li><a class="dropdown-item" href="rol.php">Roles</a></li>
-            <li><a class="dropdown-item" href="rolPermiso.php">Permisos de Roles</a></li>
-            <li><a class="dropdown-item" href="tipoProducto.php">Tipo Producto</a></li>
-            <li><a class="dropdown-item" href="usuario.php">Usuarios</a></li>
-            <li><a class="dropdown-item" href="usuarioRol.php">Roles de Usuario</a></li>
-          </ul>
+        <?php 
+          if($sistema->validarRoles('Administrador')){
+            include('menu_administrador.php');
+          }
+          if($sistema->validarRoles('Doctor')){
+            include('menu_doctor.php');
+          }
+        ?>
+        <li class="nav-item">
+          <a class="nav-link" href="../login/login.php?action=logout">Salir</a>
         </li>
       </ul>
     </div>

@@ -24,6 +24,10 @@
         </div>
     </div>
     <div class="form-floating mb-3">
+        <input type="email" name="paciente[correo]" class="form-control" id="floatingInput" placeholder="Correo" value="<?php echo (isset($datos[0]['correo']))? $datos[0]['correo'] : ''; ?>">
+        <label for="floatingInput">Correo</label>
+    </div>
+    <div class="form-floating mb-3">
         <input type="date" name="paciente[nacimiento]" class="form-control" id="floatingInput" placeholder="Domicilio" value="<?php echo (isset($datos[0]['nacimiento']))? $datos[0]['nacimiento'] : ''; ?>">
         <label for="floatingInput">Fecha nacimiento</label>
     </div>    

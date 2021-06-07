@@ -4,28 +4,7 @@
     class Usuario extends Sistema{
         var $idUsuario;
         var $correo;
-        var $contrasena;
-
-        function getIdUsuario(){
-            return $this->idUsuario;
-        }
-        function setIdUsuario($idUsuario){
-            $this->idUsuario = $idUsuario;
-        }
-
-        function getCorreo(){
-            return $this->correo;
-        }
-        function setCorreo($correo){
-            $this->correo = $correo;
-        }
-
-        function getContrasena(){
-            return $this->contrassena;
-        }
-        function setContrasena($contrasena){
-            $this->contrasena = $contrasena;
-        }
+        var $contrasena;        
 
         function create($correo, $contrasena){
             $contrasena = md5($contrasena);            

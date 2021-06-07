@@ -2,6 +2,7 @@
     include('usuario.controller.php');
     $usuarios = new Usuario();
     $sistema = new Sistema();
+    $sistema->verificarRoles('Administrador');
     $action = (isset($_GET['action'])) ? $_GET['action'] : 'read';
     include('views/header.php');
     switch($action){

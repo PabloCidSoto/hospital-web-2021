@@ -9,56 +9,7 @@
         var $amaterno;
         var $nacimiento;
         var $domicilio;
-        var $fotografía;
-
-        function getId_Paciente(){
-            return $this->id_paciente;
-        }
-        function setId_Paciente($id_paciente){
-            $this->id_paciente = $id_paciente;
-        }
-
-        function getNombre(){
-            return $this->nombre;
-        }
-        function setNombre($nombre){
-            $this->nombre = $nombre;
-        }
-
-        function getApaterno(){
-            return $this->apaterno;
-        }
-        function setApaterno($apaterno){
-            $this->apaterno = $apaterno;
-        }
-
-        function getAmaterno(){
-            return $this->amaterno;
-        }
-        function setAmaterno($amaterno){
-            $this->amaterno = $amaterno;
-        }
-
-        function getNacimiento(){
-            return $this->nacimiento;
-        }
-        function setNacimiento($nacimiento){
-            $this->nacimiento = $nacimiento;
-        }
-
-        function getDomicilio(){
-            return $this->domicilio;
-        }
-        function setDomicilio($domicilio){
-            $this->domicilio = $domicilio;
-        }
-
-        function getFotografia(){
-            return $this->fotografia;
-        }
-        function setFotografia($fotografia){
-            $this->fotografia = $fotografia;
-        }
+        var $fotografía;       
 
         /*
         Método para crear un paciente
@@ -70,24 +21,55 @@
         returns integer
         */
 
-        function create($nombre, $apaterno, $amaterno, $nacimiento, $domicilio){
-            $dbh = $this->connect();
-            $foto = $this->guardarFotografia();
-            if($foto){
-                $sentencia = "INSERT INTO paciente (nombre, apaterno, amaterno, nacimiento, domicilio, fotografia) values(:nombre, :apaterno, :amaterno, :nacimiento, :domicilio, :fotografia)"; 
+        function create($nombre, $apaterno, $amaterno, $nacimiento, $domicilio, $correo){
+            try {
+                $dbh = $this->connect();
+                $dbh->beginTransaction();
+                $foto = $this->guardarFotografia();
+                $sentencia = "INSERT INTO usuario (correo, contrasena) values (:correo, :contrasena)"; 
                 $stmt = $dbh->prepare($sentencia);
-                $stmt->bindParam(':fotografia',$foto, PDO::PARAM_STR);
-            }else{
-                $sentencia = "INSERT INTO paciente (nombre, apaterno, amaterno, nacimiento, domicilio) values(:nombre, :apaterno, :amaterno, :nacimiento, :domicilio)"; 
+                $stmt->bindParam(':correo', $correo, PDO::PARAM_STR);
+                $contrasena = md5(rand(1,100));
+                $stmt->bindParam(':contrasena', $contrasena,  PDO::PARAM_STR);
+                $stmt->execute();
+                $sentencia = "SELECT * from usuario where correo = :correo";
                 $stmt = $dbh->prepare($sentencia);
-            }            
-            $stmt->bindParam(':nombre',$nombre, PDO::PARAM_STR);
-            $stmt->bindParam(':apaterno',$apaterno, PDO::PARAM_STR);
-            $stmt->bindParam(':amaterno',$amaterno, PDO::PARAM_STR);
-            $stmt->bindParam(':nacimiento',$nacimiento, PDO::PARAM_STR);
-            $stmt->bindParam(':domicilio',$domicilio, PDO::PARAM_STR);            
-            $resultado = $stmt->execute();
-            return $resultado;
+                $stmt->bindParam(':correo', $correo, PDO::PARAM_STR);
+                $stmt->execute();
+                $fila = $stmt->fetchAll();
+                $idUsuario = $fila[0]['id_usuario'];
+                if (is_numeric($idUsuario)){
+                    $sentencia = "INSERT into usuario_rol(id_usuario, id_rol) values(:id_usuario, 3)";
+                    $stmt = $dbh->prepare($sentencia);
+                    $stmt->bindParam(':id_usuario',$idUsuario, PDO::PARAM_INT);
+                    $stmt->execute();                                    
+                    $id_doctor = $this->getIdDoctor($_SESSION['id_usuario']);
+                    if($foto){
+                        $sentencia = "INSERT INTO paciente (nombre, apaterno, amaterno, nacimiento, domicilio, fotografia, id_usuario, id_doctor) values(:nombre, :apaterno, :amaterno, :nacimiento, :domicilio, :fotografia, :id_usuario, :id_doctor)"; 
+                        $stmt = $dbh->prepare($sentencia);
+                        $stmt->bindParam(':fotografia',$foto, PDO::PARAM_STR);
+                    }else{
+                        $sentencia = "INSERT INTO paciente (nombre, apaterno, amaterno, nacimiento, domicilio, id_usuario, id_doctor) values(:nombre, :apaterno, :amaterno, :nacimiento, :domicilio, :id_usuario, :id_doctor)"; 
+                        $stmt = $dbh->prepare($sentencia);
+                    }            
+                    $stmt->bindParam(':nombre',$nombre, PDO::PARAM_STR);
+                    $stmt->bindParam(':apaterno',$apaterno, PDO::PARAM_STR);
+                    $stmt->bindParam(':amaterno',$amaterno, PDO::PARAM_STR);
+                    $stmt->bindParam(':nacimiento',$nacimiento, PDO::PARAM_STR);
+                    $stmt->bindParam(':domicilio',$domicilio, PDO::PARAM_STR);  
+                    $stmt->bindParam(':id_usuario',$idUsuario, PDO::PARAM_INT);
+                    $stmt->bindParam(':id_doctor',$id_doctor, PDO::PARAM_INT);         
+    
+                    $resultado = $stmt->execute();                    
+                    $dbh->commit();
+                    return $resultado;
+                }
+            }
+            catch (Exception $e){
+                echo 'Excepcion', $e->getMessage(), '\n';
+                $dbh->rollBack();
+            }
+            $dbh->rollBack();
         }
 
         function guardarFotografia(){
@@ -110,10 +92,17 @@
         Metodo para obtener todos los pacientes
         returns array
         */
-        function read(){
+        function read($my = false){
             $dbh = $this->connect();
-            $sentencia = "SELECT * FROM paciente";
-            $stmt = $dbh->prepare($sentencia);
+            if($my){
+                $id_doctor = $this->getIdDoctor($_SESSION['id_usuario']);
+                $sentencia = "SELECT * from paciente where id_doctor = :id_doctor";
+                $stmt = $dbh->prepare($sentencia);
+                $stmt->bindValue(':id_doctor', $id_doctor, PDO::PARAM_INT);                              
+            }else{
+                $sentencia = "SELECT * FROM paciente";
+                $stmt = $dbh->prepare($sentencia);
+            }            
             $stmt->execute();
             $rows = $stmt->fetchAll();
             return $rows;

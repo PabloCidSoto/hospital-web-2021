@@ -1,5 +1,7 @@
 <?php
     include('rol.controller.php');
+    $sistema = new Sistema();
+    $sistema->verificarRoles('Administrador');
     $rol = new Rol();
     $action = (isset($_GET['action']))? $_GET['action'] : 'read';
     include('views/header.php');

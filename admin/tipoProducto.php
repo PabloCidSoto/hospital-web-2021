@@ -1,6 +1,8 @@
 <?php
     include('tipoProducto.controller.php');
     $tipoProducto = new TipoProducto();
+    $sistema = new Sistema();
+    $sistema->verificarRoles('Administrador');
     $action = (isset($_GET['action'])) ? $_GET['action'] : 'read';
     include('views/header.php');
     switch($action){
