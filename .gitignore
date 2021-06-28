@@ -2,3 +2,5 @@ misc
 admin/archivos
 admin/init.php
 phpmailerP.php
+vendor/tecnickcom/tcpdf/examples/data/cert/tcpdf.crt
+vendor/tecnickcom/tcpdf/examples/data/cert/tcpdf.crt
