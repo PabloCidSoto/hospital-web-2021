@@ -1,6 +1,7 @@
 <?php
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\SMTP;
+    require_once '../vendor/autoload.php';
     require_once('init.php');
     session_start();
     class Sistema{
@@ -193,11 +194,44 @@
                     echo $mensaje;    
                 }
             }
-
         }
 
-        function generateToken(){
-            
+        function resetPass($correo, $token, $contrasena){
+            if($this->validarEmail($correo)){
+                if($this->validarToken($correo, $token)){
+                    $dbh = $this->connect();
+                    if (!is_null($token)){
+                        $contrasena = md5($contrasena);
+                        $sentencia = "UPDATE usuario set contrasena= :contrasena, token = null and correo = :correo"; 
+                        $stmt = $dbh->prepare($sentencia);
+                        $stmt->bindParam(':contrasena',$contrasena, PDO::PARAM_STR);
+                        $stmt->bindParam(':correo',$correo, PDO::PARAM_STR);
+                        $row = $stmt->execute();
+                        if ($row){
+                            return true;
+                        }
+
+                        return false;
+                    }
+                }
+            }
+            return false;
+        }
+
+        function calculaedad($fechanacimiento){
+            list($ano,$mes,$dia) = explode("-",$fechanacimiento);
+            $ano_diferencia  = date("Y") - $ano;
+            $mes_diferencia = date("m") - $mes;
+            $dia_diferencia   = date("d") - $dia;
+            if ($dia_diferencia < 0 || $mes_diferencia < 0)
+              $ano_diferencia--;
+            return $ano_diferencia;
+          }
+
+        function printJson($info){
+            $info = json_encode($info, true);
+            echo $info;
+            header('Content-Type: application/json');
         }
 
     }

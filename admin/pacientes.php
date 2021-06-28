@@ -1,7 +1,9 @@
 <?php
     include('pacientes.controller.php');
+    include('consulta.controller.php');
     $pacientes = new Paciente();
     $sistema = new Sistema();
+    $consulta = new Consulta();
     $sistema->verificarRoles('Doctor');
     $action = (isset($_GET['action'])) ? $_GET['action'] : 'read';
     include('views/header.php');
@@ -35,6 +37,28 @@
         case 'my':    
             $datos = $pacientes->read(true);
             include('views/pacientes/index.php');            
+            break;
+        case 'consulta':
+            $id_paciente = $_GET['id_paciente'];
+            $datos = $pacientes->readOne($id_paciente);            
+            $consultas =  $consulta->read($id_paciente);            
+            include('views/pacientes/consulta.php');
+            break;
+        case 'consulta_nueva':
+            $consul = $_POST['consulta'];
+            $resultado = $consulta->create($consul['id_paciente'], $consul['padecimiento'], $consul['tratamiento']);
+            $id_paciente = $consul['id_paciente'];
+            $datos = $pacientes->readOne($id_paciente);            
+            $consultas =  $consulta->read($id_paciente);            
+            include('views/pacientes/consulta.php');
+            break;
+        case 'insert':
+            $data = file_get_contents("../json/pacientes.json");            
+            $pacientes->createJson($data);             
+            break;
+        case 'export':
+            $id_paciente = $_GET['id_paciente'];
+            $pacientes->exportOne($id_paciente);
             break;
         default:
             $datos = $pacientes->read();

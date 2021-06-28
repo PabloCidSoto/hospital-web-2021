@@ -28,10 +28,18 @@
             }else{
                 header("Location: http://www.gmail.com");
             }
-        case 'save_pass':
+            break;
+        case 'save_pass':           
             $correo = $_POST['correo'];
             $token = $_POST['token'];
             $contrasena = $_POST['contrasena'];
+            if($sistema->resetPass($correo, $token, $contrasena)){
+                $mensaje = 'La contraseña ha sido restaurada';
+                include('views/login.php');
+            }else{
+                $mensaje = 'Ha Ocurrido un error al modificar la contraseña, vuelva a intentarlo';
+                include('views/login.php');
+            }
             break;
         case 'validate':
             if(isset($_POST['enviar'])){
